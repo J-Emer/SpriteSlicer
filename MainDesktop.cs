@@ -7,6 +7,8 @@ using EditorUI_DX;
 using EditorUI_DX.Controls;
 using EditorUI_DX.Utils;
 
+using SpriteSlicer.Data;
+
 namespace SpriteSlicer
 {
     public class MainDesktop : Desktop
@@ -15,7 +17,33 @@ namespace SpriteSlicer
 
         public override void Load()
         {
-            
+            ScalablePanel _panel = new ScalablePanel(this)
+            {
+                Name = "Grid",
+                Size = new Vector2_Int(300, 400),
+                DockStyle = DockStyle.Left,
+                BorderThickness = 2,
+                BorderColor = Color.DarkGray,
+                Layout = new Vertical_Stretch_Layout(),
+                Padding = new Padding(15)
+            };
+            Controls.Add(_panel);
+
+            PropertyGrid _grid = new PropertyGrid(this, this.DefaultFontName)
+            {
+                Name = "Grid",
+                Size = new Vector2_Int(200,200)
+            };
+            _panel.Controls.Add(_grid);
+
+            _grid.Select_Object(new SlicerData());
+
+            Button _b = new Button(this)
+            {
+                Name = "SliceButton",
+                Text = "Slice"
+            };
+            _panel.Controls.Add(_b);
         }
     }
 }

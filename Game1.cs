@@ -2,12 +2,18 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using SpriteSlicer.src;
+
+
 namespace SpriteSlicer
 {
     public class Game1 : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+
+        private MainDesktop _desktop;
+
 
         public Game1()
         {
@@ -25,9 +31,15 @@ namespace SpriteSlicer
 
         protected override void LoadContent()
         {
+            _graphics.PreferredBackBufferWidth = 1280;
+            _graphics.PreferredBackBufferHeight = 720;
+            _graphics.ApplyChanges();
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            _desktop = new MainDesktop(this.GraphicsDevice, this.Content, this.Window, "font");
+
+            new Camera(this);
         }
 
         protected override void Update(GameTime gameTime)
@@ -35,7 +47,10 @@ namespace SpriteSlicer
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            // TODO: Add your update logic here
+            _desktop.Process();
+
+            Time.Update(gameTime);
+            Input.Update();
 
             base.Update(gameTime);
         }
@@ -44,7 +59,7 @@ namespace SpriteSlicer
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            _desktop.Render(_spriteBatch);
 
             base.Draw(gameTime);
         }
