@@ -19,7 +19,7 @@ namespace SpriteSlicer
         {
             ScalablePanel _panel = new ScalablePanel(this)
             {
-                Name = "Grid",
+                Name = "Panel",
                 Size = new Vector2_Int(300, 400),
                 DockStyle = DockStyle.Left,
                 BorderThickness = 2,
