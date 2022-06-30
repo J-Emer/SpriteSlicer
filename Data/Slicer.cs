@@ -53,20 +53,49 @@ namespace SpriteSlicer.Data
 
         public static void SaveTextureAsPng(Texture2D _texture, string _fileName)
         {
-            string _path = Path.Combine(EditorFileManager.Instance.Content_Img, _fileName) + ".png";
-            Stream stream = File.Create(_path); 
-            _texture.SaveAsPng( stream, _texture.Width, _texture.Height );
-            stream.Dispose();
-            _texture.Dispose();
+            SaveFileDialog _sfd = new SaveFileDialog();
+            _sfd.FileName = _fileName;
+
+
+            if(_sfd.ShowDialog() == DialogResult.OK)
+            {
+                string _path = Path.Combine(_sfd.FileName, _fileName) + ".png";
+                Stream stream = File.Create(_path); 
+                _texture.SaveAsPng( stream, _texture.Width, _texture.Height );
+                stream.Dispose();
+                _texture.Dispose();
+            }
         }
-        public static void SaveTextureAsJpeg(Texture2D _texture, string _fileName)
+
+
+        public static void SaveTextureAsPng(List<Texture2D> _textures, string _fileName)
+        {
+            SaveFileDialog _sfd = new SaveFileDialog();
+            _sfd.FileName = _fileName;
+
+
+            if(_sfd.ShowDialog() == DialogResult.OK)
+            {
+                foreach (var _texture in _textures)
+                {
+                    string _path = Path.Combine(_sfd.FileName, _fileName) + ".png";
+                    Stream stream = File.Create(_path); 
+                    _texture.SaveAsPng( stream, _texture.Width, _texture.Height );
+                    stream.Dispose();
+                    _texture.Dispose();                    
+                }
+            }
+        }
+
+
+        /*public static void SaveTextureAsJpeg(Texture2D _texture, string _fileName)
         {
             string _path = Path.Combine(EditorFileManager.Instance.Content_Img, _fileName) + ".png";
             Stream stream = File.Create(_path);
             _texture.SaveAsJpeg( stream, _texture.Width, _texture.Height );
             stream.Dispose();
             _texture.Dispose();
-        }
+        }*/
     }
 }
 
