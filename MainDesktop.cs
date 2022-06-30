@@ -22,8 +22,6 @@ namespace SpriteSlicer
                 Name = "Panel",
                 Size = new Vector2_Int(300, 400),
                 DockStyle = DockStyle.Left,
-                BorderThickness = 2,
-                BorderColor = Color.DarkGray,
                 Layout = new Vertical_Stretch_Layout(),
                 Padding = new Padding(15)
             };
@@ -38,12 +36,20 @@ namespace SpriteSlicer
 
             _grid.Select_Object(new SlicerData());
 
-            Button _b = new Button(this)
+            Button _loadbutton = new Button(this)
+            {
+                Name = "LoadButton",
+                Text = "Load Image"
+            };
+            _panel.Controls.Add(_loadbutton);
+
+
+            Button _sliceButton = new Button(this)
             {
                 Name = "SliceButton",
                 Text = "Slice"
             };
-            _panel.Controls.Add(_b);
+            _panel.Controls.Add(_sliceButton);
         }
     }
 }

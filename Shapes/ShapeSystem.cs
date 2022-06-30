@@ -15,6 +15,8 @@ namespace SpriteSlicer.Shapes
 
         public ShapeSystem(Game _game) : base(_game)
         {
+            _game.Components.Add(this);
+
             _pixel = new Texture2D(this.Game.GraphicsDevice, 1,1);
             _pixel.SetData(new Color[] {Color.White});
 

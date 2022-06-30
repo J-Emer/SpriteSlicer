@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
 using SpriteSlicer.src;
-
+using SpriteSlicer.Shapes;
 
 namespace SpriteSlicer
 {
@@ -37,7 +37,9 @@ namespace SpriteSlicer
 
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            new ShapeSystem(this);
             _desktop = new MainDesktop(this.GraphicsDevice, this.Content, this.Window, "font");
+            new SlicerController(_desktop, this);
 
             new Camera(this);
         }
