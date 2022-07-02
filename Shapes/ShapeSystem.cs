@@ -17,13 +17,15 @@ namespace SpriteSlicer.Shapes
         {
             _game.Components.Add(this);
 
+            this.DrawOrder = 1;
+
             _pixel = new Texture2D(this.Game.GraphicsDevice, 1,1);
             _pixel.SetData(new Color[] {Color.White});
 
             Instance = this;
         }
 
-        public Rect AddRect(Vector2 _pos, Vector2 _size, int _lineThickness = 1)
+        public Rect AddRect(Vector2 _pos, Vector2 _size, int _lineThickness = 2)
         {
             Rect _rect = new Rect(_pixel, _pos, _size, _lineThickness);
             _shapes.Add(_rect);

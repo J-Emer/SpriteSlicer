@@ -9,7 +9,7 @@ namespace SpriteSlicer
 {
     public class Game1 : Game
     {
-        private GraphicsDeviceManager _graphics;
+        public static GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
 
         private MainDesktop _desktop;

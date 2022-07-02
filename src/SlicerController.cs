@@ -1,9 +1,11 @@
 using System.Reflection;
+using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using SpriteSlicer;
 using SpriteSlicer.Data;
 using SpriteSlicer.Shapes;
 
@@ -21,6 +23,8 @@ namespace SpriteSlicer.src
         public SlicerController(Desktop _desktop, Game _game) : base(_game)
         {
             _game.Components.Add(this);
+
+            this.DrawOrder = 0;
 
             ScalablePanel _panel = (ScalablePanel)_desktop.Controls.Get("Panel");
 
@@ -54,10 +58,16 @@ namespace SpriteSlicer.src
         private void ButtonPress(MouseEventArgs e)
         {
             //call slicer
+            List<Texture2D> _textures = Slicer.SliceTexture(_mainTexture, Game1._graphics.GraphicsDevice, _data.Columbs, _data.Rows, _data.CellSize);
+            System.Console.WriteLine(_textures.Count);
+            
+            
+            Slicer.SaveTextureAsPng(_textures, _data.DefaultName);
         }
         private void LoadImage(MouseEventArgs e)
         {
             //load an image
+            this._mainTexture = IO.LoadTexture2D();
         }
 
         public override void Draw(GameTime gameTime)

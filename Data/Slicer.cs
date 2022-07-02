@@ -76,13 +76,19 @@ namespace SpriteSlicer.Data
 
             if(_sfd.ShowDialog() == DialogResult.OK)
             {
+                System.Console.WriteLine("Slicer: SaveTextureAsPng: TextureCount" +  _textures.Count);
+
+                int i = 0;
                 foreach (var _texture in _textures)
                 {
-                    string _path = Path.Combine(_sfd.FileName, _fileName) + ".png";
+                    string _path = _sfd.FileName + $"_{i}.png";
+                    System.Console.WriteLine("File Name: " + _path);
                     Stream stream = File.Create(_path); 
                     _texture.SaveAsPng( stream, _texture.Width, _texture.Height );
                     stream.Dispose();
-                    _texture.Dispose();                    
+                    _texture.Dispose();  
+
+                    i += 1;                  
                 }
             }
         }
