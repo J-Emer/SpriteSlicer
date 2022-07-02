@@ -67,7 +67,6 @@ namespace SpriteSlicer.Data
             }
         }
 
-
         public static void SaveTextureAsPng(List<Texture2D> _textures, string _fileName)
         {
             SaveFileDialog _sfd = new SaveFileDialog();

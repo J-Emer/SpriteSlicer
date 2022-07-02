@@ -3,9 +3,7 @@ using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 
-using SpriteSlicer;
 using SpriteSlicer.Data;
 using SpriteSlicer.Shapes;
 
@@ -59,9 +57,7 @@ namespace SpriteSlicer.src
         {
             //call slicer
             List<Texture2D> _textures = Slicer.SliceTexture(_mainTexture, Game1._graphics.GraphicsDevice, _data.Columbs, _data.Rows, _data.CellSize);
-            System.Console.WriteLine(_textures.Count);
-            
-            
+          
             Slicer.SaveTextureAsPng(_textures, _data.DefaultName);
         }
         private void LoadImage(MouseEventArgs e)
