@@ -11,7 +11,7 @@ namespace SpriteSlicer
     {
         public static GraphicsDeviceManager _graphics;
         public static SpriteBatch _spriteBatch;
-
+        private Color _clearColor = new Color(89, 106, 133, 255);
         private MainDesktop _desktop;
 
 
@@ -59,7 +59,7 @@ namespace SpriteSlicer
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(_clearColor);
 
             _desktop.Render(_spriteBatch);
 
